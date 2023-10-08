@@ -1,0 +1,22 @@
+version: "3"
+services:
+  db:
+    image: mvertes/alpine-mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - ./db/mongo/data:/data/db
+      - ./db/mongo/logs:/var/log/mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root123
+
+  cache:
+    image: redis:alpine
+    ports:
+      - 6379:6379
+    volumes:
+      - ./db/redis/data:/data
+      - ./db/redis/conf/redis.conf:/etc/redis/redis.conf
+      - ./db/redis/logs:/logs
+    command: [ "redis-server","/etc/redis/redis.conf" ]

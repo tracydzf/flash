@@ -3,7 +3,7 @@ import json
 from aiohttp import web
 from fastapi import APIRouter
 
-from flash.common.error_code import ERROR_PARAMETER_ERROR
+from flash.common.error_code import ERROR_PARAMETER_ERROR, ERROR_SERVER
 from flash.common.resp import resp_success_json, resp_error_json
 from flash.service.schema import service_validator
 from flash.util import DB, Bson
@@ -27,7 +27,7 @@ async def post_handler(request: Request):
         await Service.create(service_validator.normalized(ctx), DB.get(request, table))
         return resp_success_json(msg='service created')
     except Exception as err:
-        return resp_error_json(ERROR_PARAMETER_ERROR, msg=str(err))
+        return resp_error_json(ERROR_SERVER, msg=str(err))
 
 
 @router.get('/service')
@@ -54,7 +54,7 @@ async def get_handler(request: Request):
 
             return resp_success_json(msg='service created', data=DB.format_documents(Bson.to_json(services)))
     except Exception as err:
-        return resp_error_json(ERROR_PARAMETER_ERROR, msg=str(err))
+        return resp_error_json(ERROR_SERVER, msg=str(err))
 
 
 @router.patch('/service')
@@ -68,7 +68,7 @@ async def patch_handler(request: Request):
 
         return resp_success_json(msg='service updated')
     except Exception as err:
-        return resp_error_json(ERROR_PARAMETER_ERROR, msg=str(err))
+        return resp_error_json(ERROR_SERVER, msg=str(err))
 
 
 @router.delete('/service')
@@ -78,4 +78,4 @@ async def delete_handler(request: Request):
         await Service.remove(request.query_params.get('id'), DB.get(request, table))
         return resp_success_json(msg='service deleted')
     except Exception as err:
-        return resp_error_json(ERROR_PARAMETER_ERROR, msg=str(err))
+        return resp_error_json(ERROR_SERVER, msg=str(err))

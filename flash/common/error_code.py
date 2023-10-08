@@ -12,6 +12,8 @@ ERROR_NOT_FOUND = ErrorBase(code=404, msg="api 路径错误")
 # 参数错误
 ERROR_PARAMETER_ERROR = ErrorBase(code=400, msg="参数错误")
 
+ERROR_SERVER = ErrorBase(code=500)
+
 # 用户相关
 ERROR_USER_TOKEN_FAILURE = ErrorBase(code=5004, msg="未登录或登录过期")
 ERROR_USER_NOT_FOUND = ErrorBase(code=5004, msg="用户不存在")
