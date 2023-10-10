@@ -3,8 +3,6 @@ import pydash
 import asyncio
 import json
 from aioredis import Redis as AioRedis
-from aioredis.connection import EncodableT
-from cerberus import Validator
 
 from flash.models.service import Service
 from flash.util import Async, DB
