@@ -20,9 +20,7 @@ table = 'service'
 @router.post('/service')
 async def post_handler(request: Request):
     try:
-        print(await request.json())
         ctx = await request.json()
-
         Validate.validate_schema(ctx, service_validator)
         await Service.create(service_validator.normalized(ctx), DB.get(request, table))
         return resp_success_json(msg='service created')
