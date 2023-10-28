@@ -1,5 +1,6 @@
 from cerberus import Validator
-from api.util import Bson
+
+from flash.util import Bson
 
 endpoint_cache_schema = {
     '_id': {
