@@ -2,7 +2,6 @@ import json
 import pydash
 from fastapi import APIRouter
 from fastapi import Request
-from aiohttp import web
 from .schema import insights_validator
 from ..common.error_code import ERROR_SERVER
 from ..common.resp import resp_error_json, resp_success_json
